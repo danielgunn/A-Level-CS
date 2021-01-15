@@ -1,16 +1,4 @@
-"""
-This set of Abstract Data Types use static memory allocation.
-They all use an array as their backing data store, and they
-will never use dynamic memory allocation after the point
-of construction.
-
-They are meant as demonstration.  I don't recommend using
-this type of data structure in your project, unless you have
-specific memory requirements
-"""
-
-
-class Stack:
+class ArrayStack:
     """This stack is implemented using an array that is
     allocated during construction.  It can never grow beyond
     this size limitation
@@ -19,9 +7,7 @@ class Stack:
     ## Empty ##
     -1     0 1 2 3 4 5 6
      ^
-
-
-    Top
+     Top
 
     ## Full ##
     0 1 2 3 4 5 6
@@ -36,7 +22,7 @@ class Stack:
     """
     def __init__(self, size):
         """ size -- the maximum size the stack will contain """
-        self.a = [0] * size
+        self.data = [0] * size
         self.size = size
         self.top = -1
 
@@ -47,7 +33,7 @@ class Stack:
 
         else:
             self.top += 1
-            self.a[self.top] = value
+            self.data[self.top] = value
 
     def pop(self):
         """return the value that is currently on the top of the stack"""
@@ -56,12 +42,12 @@ class Stack:
             return None
         else:
             self.top -= 1
-            return self.a[self.top+1]
+            return self.data[self.top + 1]
 
 def testStack():
     """ test method for the Stack class """
     print("Testing the stack")
-    s = Stack(4)
+    s = ArrayStack(4)
     s.pop()
     print("I expect an empty error above")
     for i in range(3,8,2):
@@ -74,5 +60,6 @@ def testStack():
         s.push(i)
     print("I expect three full error above")
 
-help(Stack)
-testStack()
+if __name__ == "__main__":
+    help(ArrayStack)
+    testStack()
