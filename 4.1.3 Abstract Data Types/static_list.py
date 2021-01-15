@@ -7,6 +7,29 @@ class ArrayList:
     start - a list to all the values contained in the list
     free - a list of all the spots that are currently unoccupied by data
 
+
+    There are three possible states:
+
+    1) Empty:
+       0 1 2 3 4 5 6          0 1 2 3 4 5  6
+    P  1 2 3 4 5 6 -1         5 4 3 1 6 -1 0
+    V
+       ^                          ^
+       Free                       Free
+
+    2) Full:
+       0 1 2 3 4 5 6          0 1 2 3 4 5  6
+    P  1 2 3 4 5 6 -1         5 4 3 1 6 -1 0
+    V
+       ^                          ^
+       Start                       Start
+
+    3) Normal
+      0 1 2  3 4  5 6
+    P 2 3 -1 6 -1 4 0
+    V L H O  E      L
+        ^         ^
+        Start     Free
     """
     
     def __init__(self, size):
