@@ -6,57 +6,56 @@ class CircularQueue:
     ## Empty ##
     -1     0 1 2 3 4 5 6
      ^
-    Top
-    Bottom
+     Front
+     Back
 
     ## Full ##
     0 1 2 3 4 5 6       0 1 2 3 4 5 6
     ^           ^             ^ ^
-    Bottom      Top           ^ Bottom
-                              Top
+    Front       Back          ^ Front
+                              Back
 
     ## Normal ##
     H E L L O         L O     H E L
     0 1 2 3 4 5 6     0 1 2 3 4 5 6
     ^       ^           ^     ^
-    Bottom  Top         Top   Bottom
+    Front   Back        Back   Front
     """
     def __init__(self, size):
         self.a = [0] * size
-        self.top = -1
-        self.bottom = -1
+        self.back = -1
+        self.front = -1
         self.size = size
 
     def enqueue(self, value):
+        """ Add the value to the back of the queue """
         # if full:
-        if ((self.top + 1) % self.size) == self.bottom:
+        if ((self.back + 1) % self.size) == self.front:
             print("The Queue is full.. cannot enqueue")
 
         else:
             # if empty
-            if self.bottom == -1:
-                self.bottom = 0
+            if self.front == -1:
+                self.front = 0
 
-            self.top += 1
-            self.top %= self.size
-            self.a[self.top] = value
+            self.back += 1
+            self.back %= self.size
+            self.a[self.back] = value
 
     def dequeue(self):
-        """remove the item from the bottom of the queue
-        and return its value
-        """
+        """remove the item from the front of the queue and return its value """
         # if empty:
-        if self.bottom == -1:
+        if self.front == -1:
             print("Error Queue is empty!")
             return None
         else:
-            val = self.a[self.bottom]
-            if self.bottom == self.top:  # only one item left!
-                self.bottom = -1
-                self.top = -1
+            val = self.a[self.front]
+            if self.front == self.back:  # only one item left!
+                self.front = -1
+                self.back = -1
             else:
-                self.bottom += 1
-                self.bottom %= self.size
+                self.front += 1
+                self.front %= self.size
             return val
 
 def testQueue():
