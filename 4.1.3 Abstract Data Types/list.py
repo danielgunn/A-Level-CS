@@ -1,13 +1,24 @@
 class node:
-    data = None # Value at this node
-    next = None # A pointer to the next node in the list (Note Python doesnt have pointers)
+    """A Node will contain only two things:
+        - A Pointer to the next node
+        - A value
+
+        It is the fundamental building block of Lists
+    """
 
     def __init__(self, value):
-        self.data = value
+        """ The value is any data we wish to store at this Node """
+        self.data = value # The value
+        next = None  # A pointer to the next node in the list (Note Python doesnt have pointers)
 
-class list:
-    head = None  # a pointer to the first node
-    length = 0 # keeping track of how many nodes we have
+class List:
+    """
+    A List consists of a node, connected to a node, connected to a node, ... and so on
+
+    """
+    def __init__(self):
+        self.head = None  # a pointer to the first node
+        self.length = 0 # keeping track of how many nodes we have
 
     def add(self, val):
         new_node = node(val)
@@ -52,58 +63,21 @@ class list:
             index += 1
         return index
 
-class Queue:
-    l = list()
-
-    def enqueue(self, value):
-        self.l.add(value)
-
-    def dequeue(self):
-        v = self.l.head.data
-        self.l.remove(0)
-        return v
-
-class Stack:
-    l = list()
-
-    def push(self, value):
-        self.l.add(value)
-
-    def pop(self):
-        i = self.l.head
-        value = self.l.remove(self.l.length-1)
-        return value
-
 def testList():
-    l = list()
+    l = List()
     l.add(3)
     l.add(5)
     l.add(7)
     l.remove(1)
     l.print() # Should print [3 7 ]
 
-def testQueue():
-    q = Queue()
-    q.enqueue(3)
-    q.enqueue(5)
-    q.enqueue(7)
-    print(q.dequeue()) # Should print 3
-
-def testStack():
-    s = Stack()
-    s.push(3)
-    s.push(5)
-    s.push(7)
-    print(s.pop()) # Should print 7
-
 def testLinearSearch():
-    l = list()
+    l = List()
     l.add(3)
     l.add(5)
     l.add(7)
     print(l.linear_search(5)) # Should print 1
 
-testList()
-testQueue()
-testStack()
-testLinearSearch()
+if __name__ == "__main__":
+    testList()
+    testLinearSearch()
