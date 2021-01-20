@@ -23,7 +23,7 @@ class List:
     def add(self, val):
         new_node = node(val)
 
-        if self.length == 0:
+        if self.is_empty():
             self.head = new_node
         else:
             i = self.head
@@ -34,9 +34,12 @@ class List:
 
         self.length += 1
 
+    def is_empty(self):
+        return self.length == 0
+
     def remove(self, index):
         value = None
-        if index > self.length - 1:
+        if index < 0 or (index > self.length - 1):
             return None #  this index is invalid
         elif index == 0:
             value = self.head.data
@@ -51,15 +54,15 @@ class List:
         return value
 
     def __str__(self):
-        if self.head == None:
+        if self.is_empty():
             return "[]"
-
-        i = self.head
-        s = "["
-        while i!=None:
-            s+= str(i.data) + ", "
-            i = i.next
-        return s[:-2] + "]"
+        else:
+            i = self.head
+            s = "["
+            while i!=None:
+                s+= str(i.data) + ", "
+                i = i.next
+            return s[:-2] + "]"
 
     def linear_search(self, value):
         i = self.head

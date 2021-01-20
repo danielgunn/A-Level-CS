@@ -111,23 +111,5 @@ class ArrayList:
 
                 return current
 
-def testList():
-    print("Testing the List")
-    l = ArrayList(4)
-    l.delete(0)
-    print("I expect an empty error above")
-    for i in range(3, 8, 2):
-        print("Appending",i,"I expect no error")
-        l.append(i)
-    print("I expect not found error above and -1:", l.delete(10))
-    print("I expect 0:", l.delete(3))
-    print("I expect 2:", l.delete(7))
-    print("I expect 1:", l.delete(5))
-    print("I expect empty error above and -1:", l.delete(3))
-    for i in range(7):
-        l.append(i)
-    print("I expect three full error above")
-
 if __name__ == "__main__":
     help(ArrayList)
-    testList()

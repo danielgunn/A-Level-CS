@@ -7,9 +7,13 @@ class Queue:
         self.l.add(value)
 
     def dequeue(self):
-        v = self.l.head.data
-        self.l.remove(0)
-        return v
+        if self.l.is_empty():
+            print("Error: dequeue attempt on empty queue")
+            return None
+        else:
+            v = self.l.head.data
+            self.l.remove(0)
+            return v
 
 if __name__ == "__main__":
     help(Queue)

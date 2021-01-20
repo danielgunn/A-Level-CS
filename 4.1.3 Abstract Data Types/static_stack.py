@@ -44,22 +44,5 @@ class ArrayStack:
             self.top -= 1
             return self.data[self.top + 1]
 
-def testStack():
-    """ test method for the Stack class """
-    print("Testing the stack")
-    s = ArrayStack(4)
-    s.pop()
-    print("I expect an empty error above")
-    for i in range(3,8,2):
-        s.push(i)
-    print("I expect 7:", s.pop())
-    print("I expect 5:", s.pop())
-    print("I expect 3:", s.pop())
-    print("I expect empty error above and None:", s.pop())
-    for i in range(7):
-        s.push(i)
-    print("I expect three full error above")
-
 if __name__ == "__main__":
     help(ArrayStack)
-    testStack()

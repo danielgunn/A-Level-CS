@@ -47,7 +47,7 @@ class CircularQueue:
         # if empty:
         if self.front == -1:
             print("Error Queue is empty!")
-            return None
+            return -1
         else:
             val = self.a[self.front]
             if self.front == self.back:  # only one item left!
@@ -58,23 +58,6 @@ class CircularQueue:
                 self.front %= self.size
             return val
 
-def testQueue():
-    """ test method for the Stack class """
-    print("Testing the stack")
-    q = CircularQueue(4)
-    q.dequeue()
-    print("I expect an empty error above")
-    for i in range(3,8,2):
-        q.enqueue(i)
-    print("I expect 3:", q.dequeue())
-    print("I expect 5:", q.dequeue())
-    print("I expect 7:", q.dequeue())
-    print("I expect empty error above and None:", q.dequeue())
-    for i in range(7):
-        q.enqueue(i)
-    print("I expect three full error above")
-
 if __name__ == "__main__":
     help(CircularQueue)
-    testQueue()
 
