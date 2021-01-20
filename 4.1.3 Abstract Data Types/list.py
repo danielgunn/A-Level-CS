@@ -9,7 +9,7 @@ class node:
     def __init__(self, value):
         """ The value is any data we wish to store at this Node """
         self.data = value # The value
-        next = None  # A pointer to the next node in the list (Note Python doesnt have pointers)
+        self.next = None  # A pointer to the next node in the list (Note Python doesnt have pointers)
 
 class List:
     """
@@ -36,7 +36,9 @@ class List:
 
     def remove(self, index):
         value = None
-        if index == 0:
+        if index > self.length - 1:
+            return None #  this index is invalid
+        elif index == 0:
             value = self.head.data
             self.head = self.head.next
         else:
@@ -45,15 +47,19 @@ class List:
                 prev = prev.next
             value = prev.next.data
             prev.next = prev.next.next
+        self.length -= 1
         return value
 
-    def print(self):
+    def __str__(self):
+        if self.head == None:
+            return "[]"
+
         i = self.head
-        print("The list is: [", end='')
+        s = "["
         while i!=None:
-            print(i.data,"",end="")
+            s+= str(i.data) + ", "
             i = i.next
-        print("]")
+        return s[:-2] + "]"
 
     def linear_search(self, value):
         i = self.head
@@ -63,21 +69,5 @@ class List:
             index += 1
         return index
 
-def testList():
-    l = List()
-    l.add(3)
-    l.add(5)
-    l.add(7)
-    l.remove(1)
-    l.print() # Should print [3 7 ]
-
-def testLinearSearch():
-    l = List()
-    l.add(3)
-    l.add(5)
-    l.add(7)
-    print(l.linear_search(5)) # Should print 1
-
 if __name__ == "__main__":
-    testList()
-    testLinearSearch()
+    help(List)
